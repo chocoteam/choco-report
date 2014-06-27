@@ -1,5 +1,7 @@
 */target/*
 *target/*
+*src/main/webapp/VAADIN/widgetsets/*
+*src/main/webapp/VAADIN/gwt-unitCache/*
 *.iml
 *.ipr
 *.iws
