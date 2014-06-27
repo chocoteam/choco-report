@@ -10,6 +10,6 @@ mysql.pwd=...
 ```
 
 The main commands are:
-$ mvn clean vaadin:update-widgeset package
+$ mvn clean vaadin:update-widgetset package
 $ mvn tomcat:run
 
