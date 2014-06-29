@@ -29,23 +29,7 @@ public class InvientchartsApplication extends Application {
     List<String> nomBenchmarks;
     // Benchmarks des deux onglets
     String benchmark1, benchmark2;
-
-
-    public String getBenchmark1() {
-        return benchmark1;
-    }
-
-    public void setBenchmark1(String benchmark1) {
-        this.benchmark1 = benchmark1;
-    }
-
-    public String getBenchmark2() {
-        return benchmark2;
-    }
-
-    public void setBenchmark2(String benchmark2) {
-        this.benchmark2 = benchmark2;
-    }
+	public static final int B1=0, B2=1;
 
     @Override
     public void init() {
@@ -146,9 +130,9 @@ public class InvientchartsApplication extends Application {
 
             final VerticalLayout ongletRecaps = new VerticalLayout();
             ongletRecaps.addComponent(new RecapComponent(
-                    benchmark1, benchmark2, oB.getNombreTotalBugsBenchmark1(), oB
-                    .getNombreTotalBugsBenchmark2(), oB.getNombreBugs1(),
-                    oB.getNombreBugs2(), oB.getNombreBugs3(),
+                    benchmark1, benchmark2, oB.getNombreTotalBugsBenchmark(B1), oB
+                    .getNombreTotalBugsBenchmark(B2), oB.getNombreBugs(0),
+                    oB.getNombreBugs(1), oB.getNombreBugs(2),
                     oP.getNbHausseTotal(), oP.getNbPerteTotal()));
             onglets.addTab(ongletRecaps, "Récapitulatif");
 
@@ -156,7 +140,7 @@ public class InvientchartsApplication extends Application {
             // l'application quand on change de benchmark
             choixBenchmark1.addListener(new ValueChangeListener() {
                 public void valueChange(ValueChangeEvent event) {
-                    setBenchmark1(event.getProperty().getValue().toString());
+                    benchmark1 = event.getProperty().getValue().toString();
                     ongletBugs.removeAllComponents();
                     BugsComponent oB1 = new BugsComponent(benchmark1, benchmark2, properties);
                     ongletBugs.addComponent(oB1);
@@ -166,10 +150,10 @@ public class InvientchartsApplication extends Application {
                             .addComponent(new PerfsComponent(benchmark1, benchmark2, properties));
                     ongletRecaps.removeAllComponents();
                     ongletRecaps.addComponent(new RecapComponent(benchmark1,
-                            benchmark2, oB1.getNombreTotalBugsBenchmark1(), oB1
-                            .getNombreTotalBugsBenchmark2(), oB1
-                            .getNombreBugs1(), oB1.getNombreBugs2(), oB1
-                            .getNombreBugs3(), oP1.getNbHausseTotal(), oP1
+                            benchmark2, oB1.getNombreTotalBugsBenchmark(B1), oB1
+                            .getNombreTotalBugsBenchmark(B2), oB1
+                            .getNombreBugs(0), oB1.getNombreBugs(1), oB1
+                            .getNombreBugs(2), oP1.getNbHausseTotal(), oP1
                             .getNbPerteTotal()));
                 }
             });
@@ -177,7 +161,7 @@ public class InvientchartsApplication extends Application {
 
             choixBenchmark2.addListener(new ValueChangeListener() {
                 public void valueChange(ValueChangeEvent event) {
-                    setBenchmark2(event.getProperty().getValue().toString());
+                    benchmark2 = event.getProperty().getValue().toString();
                     ongletBugs.removeAllComponents();
                     BugsComponent oB2 = new BugsComponent(benchmark1, benchmark2, properties);
                     ongletBugs.addComponent(oB2);
@@ -187,10 +171,10 @@ public class InvientchartsApplication extends Application {
                             .addComponent(new PerfsComponent(benchmark1, benchmark2, properties));
                     ongletRecaps.removeAllComponents();
                     ongletRecaps.addComponent(new RecapComponent(benchmark1,
-                            benchmark2, oB2.getNombreTotalBugsBenchmark1(), oB2
-                            .getNombreTotalBugsBenchmark2(), oB2
-                            .getNombreBugs1(), oB2.getNombreBugs2(), oB2
-                            .getNombreBugs3(), oP2.getNbHausseTotal(), oP2
+                            benchmark2, oB2.getNombreTotalBugsBenchmark(B1), oB2
+                            .getNombreTotalBugsBenchmark(B2), oB2
+                            .getNombreBugs(0), oB2.getNombreBugs(1), oB2
+                            .getNombreBugs(2), oP2.getNbHausseTotal(), oP2
                             .getNbPerteTotal()));
                 }
             });
