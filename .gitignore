@@ -6,7 +6,7 @@
 *.ipr
 *.iws
 *.war
-*/out/*
+out/*
 *.DS_Store
 
 /src/main/resources/mysql.properties
