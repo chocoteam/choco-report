@@ -46,7 +46,7 @@ public class RecapComponent extends CustomComponent {
 
         Label nombreBugs1 = new Label();
         nombreBugs1
-                .setValue("Nombre de bugs trouvés pour le bug \"Temps de résolution < 900000 et pas de solution\" : "
+                .setValue("Nombre de bugs trouvés pour le bug \"Temps de résolution < 900 et pas de solution\" : "
                         + nbBugs1);
         nombreBugs1.setImmediate(true);
         bugs.addComponent(nombreBugs1);
@@ -62,7 +62,7 @@ public class RecapComponent extends CustomComponent {
 
         Label nombreBugs3 = new Label();
         nombreBugs3
-                .setValue("Nombre de bugs trouvés pour le bug \"Temps de résolution < 900000 et pas la meilleure solution\" : "
+                .setValue("Nombre de bugs trouvés pour le bug \"Temps de résolution < 900 et pas la meilleure solution\" : "
                         + nbBugs3);
         nombreBugs3.setImmediate(true);
         bugs.addComponent(nombreBugs3);

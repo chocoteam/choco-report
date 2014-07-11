@@ -90,12 +90,12 @@ public class PerfsComponent extends CustomComponent {
 
             // Requ�te pour r�cup�rer solving_time du benchmark1
             String reqSolvingTime1 = "Select solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MIN" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid";
+                    + "MIN" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid and r.bug=0";
             bencmark1 = executeSQL(reqSolvingTime1, st, "PID", "Solving_Time");
 
             // Requ�te pour r�cup�rer solving_time du benchmark2
             String reqSolvingTime2 = "Select solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "'";
+                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "'  and r.bug=0";
             bencmark2 = executeSQL(reqSolvingTime2, st, "PID", "Solving_Time");
 
             InvientCharts chart1 = this.createChart("MIN",
@@ -105,12 +105,12 @@ public class PerfsComponent extends CustomComponent {
             /* MAX SOLVING TIME */
 
             String lastBenchmark = "SELECT solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "'";
+                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "' and r.bug=0";
 
             bencmark1 = executeSQL(lastBenchmark, st, "PID", "Solving_Time");
 
             String olderBenchmark = "SELECT solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "'";
+                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "' and r.bug=0";
 
             bencmark2 = executeSQL(olderBenchmark, st, "PID", "Solving_Time");
 
@@ -121,9 +121,9 @@ public class PerfsComponent extends CustomComponent {
             /* MIN VALUE */
 
             String rqstMinValue1 = "SELECT r.objective, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "'";
+                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "' and r.bug=0";
             String rqstMinValue2 = "SELECT r.objective, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "'";
+                    + "MIN" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "' and r.bug=0";
 
             bencmark1 = executeSQL(rqstMinValue1, st, "PID", "objective");
             bencmark2 = executeSQL(rqstMinValue2, st, "PID", "objective");
@@ -135,9 +135,9 @@ public class PerfsComponent extends CustomComponent {
             /* MAX VALUE */
 
             String rqstMaxValue1 = "SELECT r.objective, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "'";
+                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid1 + "' and r.bug=0";
             String rqstMaxValue2 = "SELECT r.objective, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "'";
+                    + "MAX" + "' AND r.pid = p.pid AND r.bid ='" + bid2 + "' and r.bug=0";
 
             bencmark1 = executeSQL(rqstMaxValue1, st, "PID", "objective");
             bencmark2 = executeSQL(rqstMaxValue2, st, "PID", "objective");
@@ -149,9 +149,9 @@ public class PerfsComponent extends CustomComponent {
             /* SAT SOLVING_TIME */
 
             String reqSolvingTimeSAT1 = "Select solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "SAT" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid";
+                    + "SAT" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid and r.bug=0";
             String reqSolvingTimeSAT2 = "Select solving_time, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "SAT" + "'AND r.bid ='" + bid2 + "' AND r.pid = p.pid";
+                    + "SAT" + "'AND r.bid ='" + bid2 + "' AND r.pid = p.pid and r.bug=0";
 
             bencmark1 = executeSQL(reqSolvingTimeSAT1, st, "PID",
                     "Solving_Time");
@@ -164,9 +164,9 @@ public class PerfsComponent extends CustomComponent {
 
             /* SAT SOLUTION */
             String reqSolutionSAT1 = "Select nb_sol, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "SAT" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid";
+                    + "SAT" + "'AND r.bid ='" + bid1 + "' AND r.pid = p.pid and r.bug=0";
             String reqSolutionSAT2 = "Select nb_sol, r.pid FROM RESOLUTIONS r, PROBLEMS p WHERE p.resolution ='"
-                    + "SAT" + "'AND r.bid ='" + bid2 + "' AND r.pid = p.pid";
+                    + "SAT" + "'AND r.bid ='" + bid2 + "' AND r.pid = p.pid and r.bug=0";
 
             bencmark1 = executeSQL(reqSolutionSAT1, st, "PID", "Nb_Sol");
             bencmark2 = executeSQL(reqSolutionSAT2, st, "PID", "Nb_Sol");
@@ -320,7 +320,7 @@ public class PerfsComponent extends CustomComponent {
         PointConfig pointConf = new PointConfig(false);
         LinkedHashSet<DecimalPoint> data = new LinkedHashSet<DecimalPoint>();
         for (Integer key : bencmark1.keySet()) {
-            if (!(bencmark1.get(key).equals(bencmark2.get(key)))) {
+            if (bencmark2.containsKey(key) && !(bencmark1.get(key).equals(bencmark2.get(key)))) {
                 double tmp = bencmark1.get(key) - bencmark2.get(key);
                 if (type == "MAX") {
                     if (tmp < 0) {
