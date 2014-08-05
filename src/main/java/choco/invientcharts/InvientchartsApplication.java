@@ -60,12 +60,12 @@ public class InvientchartsApplication extends Application {
 
             // Requête pour récupérer les deux derniers benchmarks et les mettre
             // par défaut dans les combobox
-            String bid = "SELECT MAX(bid) as bid FROM BENCHMARKS";
-            rs = st.executeQuery(bid);
-            rs.next();
-            Integer BID2 = rs.getInt("bid");
-            Integer BID1 = BID2 - 1;
-            bid = "SELECT name FROM BENCHMARKS WHERE bid = " + BID1;
+//            String bid = "SELECT MAX(bid) as bid FROM BENCHMARKS";
+//            rs = st.executeQuery(bid);
+//            rs.next();
+            Integer BID2 = 3;//rs.getInt("bid");
+            Integer BID1 = 1;//BID2 - 1;
+            String bid = "SELECT name FROM BENCHMARKS WHERE bid = " + BID1;
             rs = st.executeQuery(bid);
             rs.next();
             benchmark1 = rs.getString("name");
