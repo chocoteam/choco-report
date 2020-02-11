@@ -66,7 +66,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>codehaus-snapshots</id>
-            <url>http://nexus.codehaus.org/snapshots</url>
+            <url>https://nexus.codehaus.org/snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -103,7 +103,7 @@
     <repositories>
         <repository>
 			<id>vaadin-addons</id>
-			<url>http://maven.vaadin.com/vaadin-addons</url>
+			<url>https://maven.vaadin.com/vaadin-addons</url>
         </repository>
     </repositories>
 </project>
